@@ -250,7 +250,7 @@ export interface Signal {
 
     //If the signal contains more than one security information,the information can be sent as array of security information.
 
-    securityContexts?:SecurityContext[];
+    securityContexts?: SecurityContext[];
 
     /**
      * Information which do not describe the technical nature of the signal, but necessary for understanding the impact on business
@@ -483,7 +483,7 @@ export interface KillChainPhase {
 
 /**
  * The Common Vulnerability Scoring System (CVSS) provides a way to capture the principal characteristics of a vulnerability
- * and produce a numerical score reflecting its severity. This object is also used to represent CCSS 
+ * and produce a numerical score reflecting its severity. This object is also used to represent CCSS
  *
  * See [CVSS specification](https://www.first.org/cvss/)
  */
@@ -498,7 +498,7 @@ export interface CVSS {
      * Example: AV:A/AC:H/PR:L/UI:R/S:C/C:L/I:L/A:L
      */
     vector?: string;
-    
+
     /**
      * The CVSS score from 0-10
      */
@@ -571,8 +571,8 @@ export enum SecurityType {
     network = "network",
     dlp = "dlp",
     email = "email",
-    uba= "uba",
-    waf="waf",
+    uba = "uba",
+    waf = "waf",
     others = "others"
 }
 
@@ -831,7 +831,7 @@ export interface Evidence {
     path?: string;
 }
 
-export interface SecurityContext{
+export interface SecurityContext {
     /**
      * The most important aspect of a single is the type of security context. It can be any of the following types or something that the
      * signal consumer can interpret.
@@ -852,7 +852,7 @@ export interface SecurityContext{
 
     /**
      * To provide additional context, subType is an optional field.
-     * Examples: 
+     * Examples:
      * "UserAccess" can be a subType for type=uba
      * "Blocked" can be a subType for type=firewall
      */
@@ -1002,6 +1002,11 @@ export interface SecurityContext{
          * Any any references to web sites or documents
          */
         reference?: string | SignalUrl;
+
+        /**
+         * We will be deprecating 'reference' and using 'references' to support multiple reference links in future
+         */
+        references?: (string | SignalUrl)[];
 
         /**
          * Describes the impact of remediation
